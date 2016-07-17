@@ -1,24 +1,6 @@
 # Dotfiles
 
-These are my personnal dotfiles for my laptop which is running on [Arch Linux](https://www.archlinux.org/) and is using [i3wm](http://i3wm.org/).
-
-## Screenshots
-
-![Clean](/img/clean.png)
-
-![Rofi](/img/rofi.png)
-
-![Fake busy](/img/fake_busy.png)
-
-![Lock](/img/lock.png)
-
-This setup is based on a flexible theme customization, and each time I log in, I have a random theme loaded (I currently have ~30 themes, all generated with [themer](https://github.com/s-ol/themer)). Here are some exemples of other themes :
-
-![Other theme](/img/other_theme.png)
-
-![Other theme](/img/other_theme2.png)
-
-![Other theme](/img/other_theme3.png)
+These are my personnal dotfiles for my laptop which is running on [Debian stretch](https://wiki.debian.org/DebianStretch) and is using [i3wm](http://i3wm.org/).
 
 ## Software
 
@@ -131,4 +113,9 @@ This setup is based on a flexible theme customization, and each time I log in, I
 
 ## Hardware
 
-Macbook Pro 13,3" Retina screen, 2.7GHz dual-core Intel Core i5 processor, 8GB RAM, 256GB SSD.
+Intel Core i5-3750 @ 3.4GHz, 24GB RAM, OS@128GB SSD, home@1TB HDD, data@2TB HDD
+
+- Dell U @1920x1080
+- Dell U @1920x1080
+- Logitech Projector @1024x768
+

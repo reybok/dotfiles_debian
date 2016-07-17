@@ -1,189 +1,238 @@
+################################################
+# config devices and start i3 related programs #
+################################################
+set $init exec --no-startup-id
+
+# monitor config
+$init xrandr --output $outputLeft --mode 1920x1080 --pos 0x0 --rotate normal --output $outputRight --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output $outputProjector --off
+
+# enable S/PDIF output for Xonar DGX sound card
+$init $HOME/scripts/alsa_enable_DGX_optical.sh
+
+# composite manager (window transitions/transparency)
+$init compton -b 
+
+# start yabar to display the workspace plus system information. see .config/yabar.conf
+$init yabar
+
+# wallpaper and theme
+$init $HOME/scripts/set_theme
+#$init feh --bg-scale $HOME/downloads/customize/wallpaper/abstract/wallhaven-409527.jpg
+
+# notification system
+$init dunst
+
+
 ######################
-# Auto-start programs
+# system keybindings #
 ######################
-
-# Udiskie (USB auto-mounting)
-exec --no-startup-id udiskie --tray
-
-# Display specific config
-exec --no-startup-id xrandr --output eDP1 --mode 2560x1600 --dpi 192
-
-# Composite manager (used for transparency)
-exec --no-startup-id compton -b
-
-# Bar
-exec --no-startup-id yabar
-
-# Wallpaper and theme
-exec --no-startup-id ~/scripts/set_theme
-
-# Notification system
-exec --no-startup-id dunst
-
-####################
-# Custom keybinding
-####################
-
-# Work layout (termite with tmux)
-bindsym XF86LaunchA exec termite -e "tmuxinator start work"
-
-# Internet layout (firefox, irc)
-bindsym XF86LaunchB layout tabbed ; exec firefox ; exec termite -e "weechat"
-
-# Background program layout (htop, thunderbird)
-bindsym Control+XF86LaunchB exec thunderbird ; exec termite -e "htop"
-
-# Screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 1%
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 1%
-
-# Keyboard backlight
-bindsym XF86KbdBrightnessDown exec --no-startup-id kbdlight down 11
-bindsym XF86KbdBrightnessUp exec --no-startup-id kbdlight up 11
-
-# Sound control
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 3%+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 3%- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
-
-# Start rofi (a program launcher)
-bindsym $mod+d exec rofi -show run
-
-# Lock computer
-bindsym $mod+Control+e exec ~/scripts/lock_screen
-
-####################
-# System keybinding
-####################
+# to find a keysym, start xev and press the desired key
 
 set $mod Mod4
+set $alt Mod1
 
-# Start a terminal
-bindsym $mod+Return exec termite
+# kill focused window
+bindsym $mod+Shift+q kill
 
-# Kill focused window
-bindsym $mod+c kill
-
-# Change focus
+# change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
 bindsym $mod+l focus right
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
-# Move focused window
-bindsym $mod+Control+h move left
-bindsym $mod+Control+j move down
-bindsym $mod+Control+k move up
-bindsym $mod+Control+l move right
+# use Tab to switch monitors
+bindsym $mod+Tab	focus output right
+bindsym $mod+Shift+Tab	focus output left
 
-# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Control+r restart
+# use Alt+Tab to switch workspaces
+bindsym $alt+Tab 	workspace next
+bindsym $alt+Shift+Tab	workspace previous
 
-#######################
-# Workspace keybinding
-#######################
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
-# Custom name
-set $w1 "1: dev_"
-set $w2 "2: web_"
-set $w3 "3: misc_"
-set $w4 "4: movie_"
-set $w5 "5:"
-set $w6 "6:"
-set $w7 "7:"
-set $w8 "8:"
-set $w9 "9:"
-set $w10 "10:"
+# focus the parent container
+#bindsym $mod+a focus parent
 
-# Switch to workspace
-bindsym $mod+1 workspace $w1
-bindsym $mod+2 workspace $w2
-bindsym $mod+3 workspace $w3
-bindsym $mod+4 workspace $w4
-bindsym $mod+5 workspace $w5
-bindsym $mod+6 workspace $w6
-bindsym $mod+7 workspace $w7
-bindsym $mod+8 workspace $w8
-bindsym $mod+9 workspace $w9
-bindsym $mod+0 workspace $w10
+# focus the child container
+#bindsym $mod+d focus child
 
-# Move focused container to workspace
-bindsym $mod+Control+1 move container to workspace $w1
-bindsym $mod+Control+2 move container to workspace $w2
-bindsym $mod+Control+3 move container to workspace $w3
-bindsym $mod+Control+4 move container to workspace $w4
-bindsym $mod+Control+5 move container to workspace $w5
-bindsym $mod+Control+6 move container to workspace $w6
-bindsym $mod+Control+7 move container to workspace $w7
-bindsym $mod+Control+8 move container to workspace $w8
-bindsym $mod+Control+9 move container to workspace $w9
-bindsym $mod+Control+0 move container to workspace $w10
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# Lock the screen
+#bindsym Control+$alt+Delete exec ~/scripts/i3scrotlock.sh "path/to/img.png"
 
-# Workspace back and forth (with/without active container)
-bindsym $mod+n workspace back_and_forth
-bindsym $mod+Control+n move container to workspace back_and_forth; workspace back_and_forth
 
-# Navigate workspaces next/previous
-bindsym $mod+m workspace next
-bindsym $mod+p workspace prev
+######################
+# layout keybindings #
+######################
 
-####################
-# Layout keybinding
-####################
-
-# Split in horizontal orientation
+# split in horizontal orientation
 bindsym $mod+b split h
 
-# Split in vertical orientation
+# split in vertical orientation
 bindsym $mod+v split v
 
-# Enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
 
-# Change container layout (stacked, tabbed, toggle split)
+# change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
-bindsym $mod+t layout tabbed
+bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
-# Toggle tiling / floating
-bindsym $mod+Control+space floating toggle
+# toggle tiling / floating
+bindsym $mod+Shift+f floating toggle
 
-# Change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# change focus between tiling / floating windows
+bindsym $mod+m focus mode_toggle
 
-# Resize window (you can also use the mouse for that)
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# resize window (you can also use the mouse for that)
 mode "resize" {
-   # These bindings trigger as soon as you enter the resize mode
+        # These bindings trigger as soon as you enter the resize mode
 
-   # Pressing left will shrink the window’s width.
-   # Pressing right will grow the window’s width.
-   # Pressing up will shrink the window’s height.
-   # Pressing down will grow the window’s height.
-   bindsym h resize shrink width 10 px or 10 ppt
-   bindsym j resize grow height 10 px or 10 ppt
-   bindsym k resize shrink height 10 px or 10 ppt
-   bindsym l resize grow width 10 px or 10 ppt
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
-   # Back to normal: Enter or Escape
-   bindsym Return mode "default"
-   bindsym Escape mode "default"
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
-#######
-# Gaps
-#######
 
-gaps inner 20
-gaps outer 20
+#########################
+# workspace keybindings #
+#########################
 
-# Needed to enable gaps correctly
-for_window [class="^.*"] border pixel 2
+set $outputRight DVI-0
+set $outputLeft DisplayPort-4
+set $outputProjector HDMI-3
 
-#########
-# Colors
-#########
+set $workspace1 ""
+workspace 	""		output $outputRight
+set $workspace2 ""
+workspace 	"" 		output $outputRight
+set $workspace3 ""
+workspace 	"" 		output $outputRight
+set $workspace4 ""
+workspace 	"" 		output $outputRight
+set $workspace5 ""
+workspace 	"" 		output $outputRight
+set $workspace6 ""
+workspace 	"" 		output $outputRight
+set $workspace7 "stusta"
+workspace 	"stusta" 	output $outputRight
+set $workspace8 "havoc"
+workspace 	"havoc" 	output $outputRight
+set $workspace9 ""
+workspace 	"" 		output $outputRight
+set $workspace10 ""
+workspace 	 "" 		output $outputRight
+
+# TODO this hopefully gets implemented in the future. 
+# Otherwise maybe solve with scripts?
+#workspace $workspace1 output $outpuRight
+#workspace $workspace2 output $outpuRight
+#workspace $workspace3 output $outpuRight
+#workspace $workspace4 output $outpuRight
+#workspace $workspace5 output $outpuRight
+#workspace $workspace6 output $outpuRight
+#workspace $workspace7 output $outpuRight
+#workspace $workspace8 output $outpuRight
+#workspace $workspace9 output $outpuRight
+#workspace $workspace10 output $outputRight
+
+set $workspaceLeft1 	""
+workspace 		"" 	output $outputLeft
+set $workspaceLeft2 	""
+workspace 		"" 	output $outputLeft
+set $workspaceLeft3 	""
+workspace 		"" 	output $outputLeft
+
+#workspace $workspaceLeft1 output $outpuLeft
+#workspace $workspaceLeft2 output $outpuLeft
+#workspace $workspaceLeft3 output $outpuLeft
+
+set $workspaceProjector1 ""
+workspace 		 ""	output $outputProjector
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+bindsym $mod+F1 workspace $workspaceLeft1
+bindsym $mod+F2 workspace $workspaceLeft2
+bindsym $mod+F3 workspace $workspaceLeft3
+
+bindsym $mod+F8 workspace $workspaceProjector1
+
+#press the same workspace again to go back where you came from
+workspace_auto_back_and_forth yes
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+bindsym $mod+Shift+F1 move container to workspace $workspaceLeft1
+bindsym $mod+Shift+F2 move container to workspace $workspaceLeft2
+bindsym $mod+Shift+F3 move container to workspace $workspaceLeft3
+
+bindsym $mod+Shift+F8 move container to workspace $workspaceProjector1
+
+
+##############
+# Appearance #
+##############
 
 set $background   {{ black }}
 set $foreground   {{ white }}
@@ -201,16 +250,64 @@ client.focused_inactive $secondary  $secondary $background $secondary
 client.unfocused        $secondary  $secondary $background $secondary
 client.urgent           $warning    $warning   $foreground $warning
 
-##############
-# Environment
-##############
+# Font for window titles
+set $fontName System San Francisco Display
+set $fontSize 11
+font pango:$fontName $fontSize
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+#hide_edge_borders both
+#show_marks yes
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# i3 gaps
+for_window [class="^.*"] border pixel 2
 
-# Disable "focus follows mouse" mode
-focus_follows_mouse no
+gaps inner 20
+#gaps outer 30
+
+# no gaps if only one window
+#smart_gaps on 
+
+#######################
+# program keybindings #
+#######################
+# class names can be found via xprop
+
+# terminal emulator
+set $term i3-sensible-terminal
+
+# start a terminal	
+#bindsym $mod+Return exec "urxvt -sl '12000' +sb -fn 'xft:$fontName:Thin:size=10,xft:FontAwesome:size=10' -letsp '-3'"
+bindsym $mod+Return exec $term 
+
+# start dmenu (a program launcher)
+bindsym $mod+space exec rofi -show run
+
+
+#################################
+# program workspace assignments #
+#################################
+
+# browser / internet
+#assign [class="Firefox"] $workspace2
+
+# development
+asssign [class="jetbrains-idea"] $workspace3
+
+# social networks
+assign [class="Franz"] $workspace9
+
+
+######################
+# tray and autostart #
+######################
+
+# i3 config on secondary monitor
+$init i3-msg "workspace $workspaceLeft3; exec \\"i3-sensible-terminal -e 'vim $HOME/.i3/config'\\" ; workspace $workspace1"
+
+exec $HOME/downloads/customize/dependencies/franz/Franz
+$init i3-msg 'workspace $workspace2; exec firefox; workspace $workspace1'
+
+# network manager
+#$init nm-applet
+
+$init fluxgui

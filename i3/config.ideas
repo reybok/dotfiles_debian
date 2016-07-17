@@ -1,0 +1,46 @@
+####################
+# Custom keybinding
+####################
+
+# Work layout (termite with tmux)
+bindsym XF86LaunchA exec termite -e "tmuxinator start work"
+
+# Internet layout (firefox, irc)
+bindsym XF86LaunchB layout tabbed ; exec firefox ; exec termite -e "weechat"
+
+# Background program layout (htop, thunderbird)
+bindsym Control+XF86LaunchB exec thunderbird ; exec termite -e "htop"
+
+# Screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 1%
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 1%
+
+# Keyboard backlight
+bindsym XF86KbdBrightnessDown exec --no-startup-id kbdlight down 11
+bindsym XF86KbdBrightnessUp exec --no-startup-id kbdlight up 11
+
+# Sound control
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 3%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 3%- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
+
+# Lock computer
+bindsym $mod+Control+e exec ~/scripts/lock_screen
+
+####################
+# System keybinding
+####################
+
+# Workspace back and forth (with/without active container)
+bindsym $mod+n workspace back_and_forth
+bindsym $mod+Control+n move container to workspace back_and_forth; workspace back_and_forth
+##############
+# Environment
+##############
+
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:DejaVu Sans Mono 8
+
+# Disable "focus follows mouse" mode
+focus_follows_mouse no

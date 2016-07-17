@@ -1,6 +1,6 @@
 # Randomly choose a wallpaper
 wallpaper_id=$(((RANDOM % 28) + 1))
-feh --bg-scale ~/images/wallpapers/wallpaper$wallpaper_id.jpg
+feh --bg-scale $HOME/.config/themer/wallpaper$wallpaper_id/wallpaper.jpg
 
 # Load the corresponding theme with it (thanks to themer)
 themer activate wallpaper$wallpaper_id

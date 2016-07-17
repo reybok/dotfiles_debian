@@ -1,3 +1,6 @@
+themer/templates/i3/i3.tpl
+themer/templates/i3/Xresources.tpl
+themer/templates/i3/yabar.tpl
 themer/templates/i3/plugins/__init__.py
 themer/templates/i3/plugins/__pycache__/*
 themer/current

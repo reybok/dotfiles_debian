@@ -12,7 +12,8 @@ filetype plugin on
 filetype indent on
 
 " Use powerline for vim
-set rtp+=/usr/lib/python3.5/site-packages/powerline/bindings/vim
+" TODO!
+" set rtp+=/usr/lib/python3.5/site-packages/powerline/bindings/vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -45,7 +46,8 @@ let g:vim_markdown_folding_disabled=1
 let g:pencil#wrapModeDefault = 'soft'
 
 " Grammatical correction
-let g:languagetool_jar='~/.vim/bundle/LanguageTool/software/LanguageTool-3.4/languagetool-commandline.jar'
+" TODO!
+" let g:languagetool_jar='~/.vim/bundle/LanguageTool/software/LanguageTool-3.4/languagetool-commandline.jar'
 
 " Redrew only when we need to
 set lazyredraw

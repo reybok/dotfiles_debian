@@ -1,0 +1,315 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+set $alt Mod1
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+set $fontName System San Francisco Display
+set $fontSize 11
+font pango:$fontName $fontSize
+
+# Lock the screen
+#bindsym Control+$alt+Delete exec ~/scripts/i3scrotlock.sh "path/to/img.png"
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# to find a keysym, start xev and press the desired key
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start dmenu (a program launcher)
+bindsym $mod+space exec rofi -show run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+# bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
+
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# use Tab to switch monitors
+bindsym $mod+Tab	focus output right
+bindsym $mod+Shift+Tab	focus output left
+
+# use Alt+Tab to switch monitors
+bindsym $alt+Tab 	workspace next
+bindsym $alt+Shift+Tab	workspace previous
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+b split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+f floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+m focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# workspaces and outputs
+set $outputRight DVI-0
+set $outputLeft DisplayPort-4
+set $outputProjector HDMI-3
+
+# workspaces named [n]:[NAME] will be displayed as NAME only. 'yes' or 'no'
+set $stripWorkspaceNumbers yes
+
+set $workspace1 "1:"
+workspace 	"1:"		output $outputRight
+set $workspace2 "2:"
+workspace 	"2:" 		output $outputRight
+set $workspace3 "3:"
+workspace 	"3:" 		output $outputRight
+set $workspace4 "4:"
+workspace 	"4:" 		output $outputRight
+set $workspace5 "5:"
+workspace 	"5:" 		output $outputRight
+set $workspace6 "6:"
+workspace 	"6:" 		output $outputRight
+set $workspace7 "7: stusta"
+workspace 	"7: stusta" 	output $outputRight
+set $workspace8 "8: havoc"
+workspace 	"8: havoc" 	output $outputRight
+set $workspace9 "9:"
+workspace 	"9:" 		output $outputRight
+set $workspace10 "10:"
+workspace 	 "10:" 	output $outputRight
+
+# TODO this hopefully gets implemented in the future. 
+# Otherwise maybe solve with scripts?
+#workspace $workspace1 output $outpuRight
+#workspace $workspace2 output $outpuRight
+#workspace $workspace3 output $outpuRight
+#workspace $workspace4 output $outpuRight
+#workspace $workspace5 output $outpuRight
+#workspace $workspace6 output $outpuRight
+#workspace $workspace7 output $outpuRight
+#workspace $workspace8 output $outpuRight
+#workspace $workspace9 output $outpuRight
+#workspace $workspace10 output $outputRight
+
+# workspaces named [n]:[NAME] will be displayed as NAME only
+set $workspaceLeft1 	"1:"
+workspace 		"1:" 	output $outputLeft
+set $workspaceLeft2 	"2:"
+workspace 		"2:" 	output $outputLeft
+set $workspaceLeft3 	"3:"
+workspace 		"3:" 	output $outputLeft
+
+#workspace $workspaceLeft1 output $outpuLeft
+#workspace $workspaceLeft2 output $outpuLeft
+#workspace $workspaceLeft3 output $outpuLeft
+
+set $workspaceProjector1 	"projector"
+workspace 			"projector"	output $outputProjector
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+bindsym $mod+F1 workspace $workspaceLeft1
+bindsym $mod+F2 workspace $workspaceLeft2
+bindsym $mod+F3 workspace $workspaceLeft3
+
+bindsym $mod+F8 workspace $workspaceProjector1
+
+#press the same workspace again to go back where you came from
+workspace_auto_back_and_forth yes
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+bindsym $mod+Shift+F1 move container to workspace $workspaceLeft1
+bindsym $mod+Shift+F2 move container to workspace $workspaceLeft2
+bindsym $mod+Shift+F3 move container to workspace $workspaceLeft3
+
+bindsym $mod+Shift+F8 move container to workspace $workspaceProjector1
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+##############
+# Appearance #
+##############
+
+set $background   {{ black }}
+set $foreground   {{ white }}
+set $gray         {{ alt_black }}
+set $primary      {{ primary }}
+set $secondary    {{ secondary }}
+set $tertiary     {{ tertiary }}
+set $warning      {{ special }}
+
+set $transparent #00000000
+
+# colors                BORDER      BACKGROUND TEXT        INDICATOR
+client.focused          $primary    $primary   $background $primary
+client.focused_inactive $secondary  $secondary $background $secondary
+client.unfocused        $secondary  $secondary $background $secondary
+client.urgent           $warning    $warning   $foreground $warning
+
+
+# color definitions
+set $bg-color 			#2f343f
+set $inactive-bg-color 		#2f343f
+set $text-color 		#f3f4f5
+set $inactive-text-color 	#676E6D
+set $urgent-bg-color 		#E53935
+
+#hide_edge_borders both
+#show_marks yes
+
+#exec ~/.i3/dualmonitor.layout.sh
+exec_always xrandr --output $outputLeft --mode 1920x1080 --pos 0x0 --rotate normal --output $outputRight --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output $outputProjector --off
+exec --no-startup-id compton -b 
+
+# i3 gaps
+for_window [class="^.*"] border pixel 2
+
+gaps inner 20
+#gaps outer 30
+
+# no gaps if only one window
+#smart_gaps on 
+
+set $init exec --no-startup-id
+
+# Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
+# now using yabar, see .config/yabar.conf
+$init yabar
+
+# wallpaper and theme
+$init $HOME/scripts/set_theme
+
+# notification system
+$init dunst
+
+
+#TODO key bindings for projector
+
+# wallpaper
+#TODO this should be done by themer
+#exec_always --no-startup-id feh --bg-scale $HOME/downloads/customize/wallpaper/abstract/wallhaven-409527.jpg
+
+#########################################################
+# Default programs. class names can be found via xprop. #
+#########################################################
+
+# terminal emulator
+set $term i3-sensible-terminal
+
+# enable optical output for Xonar DGX sound card
+#exec --no-startup-id amixer -c 0 set IEC958,0 unmute
+exec --no-startup-id $HOME/.scripts/alsa_enable_DGX_optical.sh
+
+# start a terminal	#i3-sensible-terminal
+#bindsym $mod+Return exec "urxvt -sl '12000' +sb -fn 'xft:$fontName:Thin:size=10,xft:FontAwesome:size=10' -letsp '-3' -cr '$urgent-bg-color'"
+bindsym $mod+Return exec $term 
+
+# browser on workspace 2
+#assign [class="Firefox"] $workspace2
+exec --no-startup-id i3-msg 'workspace $workspace2; exec firefox; workspace $workspace1'
+
+# development on workspace 3
+assign [class="jetbrains-idea"] $workspace3
+
+# social networks on workspace 9
+assign [class="Franz"] $workspace9
+exec $HOME/downloads/customize/dependencies/franz/Franz
+#exec_always --no-startup-id i3-msg 'workspace $workspace9; exec $HOME/downloads/customization/dependencies/franz/Franz ; workspace $workspace1'
+
+# i3 config on secondary monitor
+exec --no-startup-id i3-msg "workspace $workspaceLeft3; exec \\"i3-sensible-terminal -e 'vim $HOME/.i3/config'\\" ; workspace $workspace1"
+
+# TRAY
+
+# network manager
+#exec --no-startup-id nm-applet
