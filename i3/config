@@ -10,14 +10,10 @@ $init xrandr --output $outputLeft --mode 1920x1080 --pos 0x0 --rotate normal --o
 $init $HOME/scripts/alsa_enable_DGX_optical.sh
 
 # composite manager (window transitions/transparency)
-$init compton -b 
-
-# start yabar to display the workspace plus system information. see .config/yabar.conf
-$init yabar
+$init compton 
 
 # wallpaper and theme
 $init $HOME/scripts/set_theme
-#$init feh --bg-scale $HOME/downloads/customize/wallpaper/abstract/wallhaven-409527.jpg
 
 # notification system
 $init dunst
@@ -142,26 +138,29 @@ set $outputRight DVI-0
 set $outputLeft DisplayPort-4
 set $outputProjector HDMI-3
 
-set $workspace1 ""
-workspace 	""		output $outputRight
-set $workspace2 ""
-workspace 	"" 		output $outputRight
-set $workspace3 ""
-workspace 	"" 		output $outputRight
-set $workspace4 ""
-workspace 	"" 		output $outputRight
-set $workspace5 ""
-workspace 	"" 		output $outputRight
-set $workspace6 ""
-workspace 	"" 		output $outputRight
-set $workspace7 "stusta"
-workspace 	"stusta" 	output $outputRight
-set $workspace8 "havoc"
-workspace 	"havoc" 	output $outputRight
-set $workspace9 ""
-workspace 	"" 		output $outputRight
-set $workspace10 ""
-workspace 	 "" 		output $outputRight
+# workspaces named [n]:[NAME] will be displayed as NAME only. 'yes' or 'no'
+set $stripWorkspaceNumbers yes
+
+set $workspace1 "1:"
+workspace 	"1:"		output $outputRight
+set $workspace2 "2:"
+workspace 	"2:" 		output $outputRight
+set $workspace3 "3:"
+workspace 	"3:" 		output $outputRight
+set $workspace4 "4:"
+workspace 	"4:" 		output $outputRight
+set $workspace5 "5:"
+workspace 	"5:" 		output $outputRight
+set $workspace6 "6:"
+workspace 	"6:" 		output $outputRight
+set $workspace7 "7: stusta"
+workspace 	"7: stusta" 	output $outputRight
+set $workspace8 "8: havoc"
+workspace 	"8: havoc" 	output $outputRight
+set $workspace9 "9:"
+workspace 	"9:" 		output $outputRight
+set $workspace10 "10:"
+workspace 	 "10:" 	output $outputRight
 
 # TODO this hopefully gets implemented in the future. 
 # Otherwise maybe solve with scripts?
@@ -176,12 +175,13 @@ workspace 	 "" 		output $outputRight
 #workspace $workspace9 output $outpuRight
 #workspace $workspace10 output $outputRight
 
-set $workspaceLeft1 	""
-workspace 		"" 	output $outputLeft
-set $workspaceLeft2 	""
-workspace 		"" 	output $outputLeft
-set $workspaceLeft3 	""
-workspace 		"" 	output $outputLeft
+# workspaces named [n]:[NAME] will be displayed as NAME only
+set $workspaceLeft1 	"1:"
+workspace 		"1:" 	output $outputLeft
+set $workspaceLeft2 	"2:"
+workspace 		"2:" 	output $outputLeft
+set $workspaceLeft3 	"3:"
+workspace 		"3:" 	output $outputLeft
 
 #workspace $workspaceLeft1 output $outpuLeft
 #workspace $workspaceLeft2 output $outpuLeft
@@ -267,6 +267,47 @@ gaps inner 20
 # no gaps if only one window
 #smart_gaps on 
 
+# Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
+# primary output
+bar {
+	output $outputRight
+	tray_output $outputRight
+
+	# TODO! i3blocks	
+        status_command i3status
+	# Obey Fitt's Law
+	tray_padding 0
+	
+	# Appearance
+	strip_workspace_numbers $stripWorkspaceNumbers
+	colors {
+		background $background
+		separator $gray
+		#			border	      background     text
+		focused_workspace	$primary      $primary       $background
+		inactive_workspace	$background   $background    $secondary
+		urgent_workspace	$background   $background    $warning
+	}	
+}
+# secondary output
+bar {
+	output $outputLeft
+	output $outputProjector
+	tray_output none
+	
+	# Appearance
+	strip_workspace_numbers $stripWorkspaceNumbers
+	colors {
+		background $background
+		separator $gray
+		#			border	      background     text
+		focused_workspace	$primary      $primary       $background
+		inactive_workspace	$background   $background    $secondary
+		urgent_workspace	$background   $background    $warning
+	}	
+}
+
+
 #######################
 # program keybindings #
 #######################
@@ -291,7 +332,7 @@ bindsym $mod+space exec rofi -show run
 #assign [class="Firefox"] $workspace2
 
 # development
-asssign [class="jetbrains-idea"] $workspace3
+assign [class="jetbrains-idea"] $workspace3
 
 # social networks
 assign [class="Franz"] $workspace9
@@ -301,8 +342,13 @@ assign [class="Franz"] $workspace9
 # tray and autostart #
 ######################
 
+exec gnome-terminal
+exec 'echo "test" > $HOME/test'
+
 # i3 config on secondary monitor
 $init i3-msg "workspace $workspaceLeft3; exec \\"i3-sensible-terminal -e 'vim $HOME/.i3/config'\\" ; workspace $workspace1"
+# htop on secondary monitor
+$init i3-msg "workspace $workspaceLeft1; exec \\"i3-sensible-terminal -e 'htop'\\" ; workspace $workspace1"
 
 exec $HOME/downloads/customize/dependencies/franz/Franz
 $init i3-msg 'workspace $workspace2; exec firefox; workspace $workspace1'

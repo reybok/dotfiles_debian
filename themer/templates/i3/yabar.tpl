@@ -1,1 +1,1 @@
-/home/napnac/dotfiles/yabar/yabar.conf
+/home/jakob/dotfiles/yabar/yabar.conf

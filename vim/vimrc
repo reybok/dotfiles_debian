@@ -28,7 +28,7 @@ set number
 set showmatch
 
 " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-set noshowmode 
+"set noshowmode 
 
 " Show the status line
 set laststatus=2
@@ -60,6 +60,7 @@ set background=dark
 "colorscheme vimbrant
 highlight ColorColumn ctermbg=7
 highlight ColorColumn guibg=Gray
+highlight Visual guibg=Gray
 
 " Enable 256 colors in Vim
 set t_Co=256
@@ -175,7 +176,7 @@ map <leader>ç :TogglePencil<CR>
 inoremap jk <esc>
 
 " Paste mode
-set pastetoggle=<F1>
+"set pastetoggle=<F1>
 
 " Ultisnips : trigger configuration
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -189,7 +190,7 @@ let g:UltiSnipsEditSplit="vertical"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Colored column
 highlight ColorColumn ctermbg=blue
-set colorcolumn=81
+set colorcolumn=101
 
 " Smart way to move between windows
 map <C-j> <C-W>j

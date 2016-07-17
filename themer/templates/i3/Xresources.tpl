@@ -1,1 +1,1 @@
-/home/napnac/dotfiles/xorg/Xresources
+/home/jakob/dotfiles/xorg/Xresources

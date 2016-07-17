@@ -61,8 +61,9 @@ export DISABLE_AUTO_TITLE=true
 
 # Set name of the theme to load (stored in ~/.oh-my-zsh/theme/)
 # Honukai-theme : https://github.com/oskarkrawczyk/honukai-iterm-zsh
-ZSH_THEME="honukai"
-. /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
+#TODO enable
+#ZSH_THEME="honukai"
+#. /usr/lib/python3.5/site-packages/powerline/bindings/zsh/powerline.zsh
 
 # -----------------------------------------------------------------------------
 # Plugin
@@ -77,13 +78,16 @@ plugins=()
 # -----------------------------------------------------------------------------
 
 # Oh-My-Zsh
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
+#TODO enable!
 
 # Fish-like highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#TODO enable
 
 # Tmuxinator
-source ~/dotfiles/tmux/tmuxinator.zsh
+#source ~/dotfiles/tmux/tmuxinator.zsh
+#TODO enable
 
 # -----------------------------------------------------------------------------
 # Alias 
@@ -165,7 +169,8 @@ T() { ~/scripts/blocklist && transmission-daemon && sleep 3 && transmission-remo
 eval $(dircolors ~/.dircolors)
 
 # Z script : https://github.com/rupa/z
-. /bin/z.sh
+#TODO download
+#. /bin/z.sh
 
 # Enable termite shortcut: ctrl-shift-t  open terminal in the current directory
 if [[ $TERM == xterm-termite ]]; then

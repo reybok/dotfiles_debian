@@ -59,8 +59,9 @@ link_file () {
   local overwrite= backup= skip=
   local action=
 
-  # ensure that parent folder(s) exist
-  mkdir -p $(dirname "$dst")
+  # ensure that parent folder exist
+  mkdir -p $(dirname "$src")
+  mkdir -p $(dirname "$dst")  
 
   if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
   then
@@ -133,15 +134,13 @@ link_file () {
 }
 
 link_content() {
-  local src_dir=$1 dst_dir=$2
-  
-  for src in $($src_dir/*)
+  local src_dir="$1/*" dst_dir=$2
+  info "linking contents of $src_dir"
+  for src in $src_dir
   do
      dst="$dst_dir/$(basename "$src")"
-     echo "unzipping dir: link from $dst to original $src"
      link_file "$src" "$dst"
   done
-  
 }
 
 install_dotfiles () {
@@ -180,7 +179,7 @@ install_dotfiles () {
 
   # themer
   link_content "$dotfiles/themer" "$HOME/.config/themer"
-  link_file "$HOME/.config/themer/current/i3.conf" "$HOME/.config/i3/config"
+  link_file "$HOME/.config/themer/current/i3.conf" "$HOME/.i3/config"
   link_file "$HOME/.config/themer/current/Xresources" "$HOME/.Xresources"
   link_file "$HOME/.config/themer/current/yabar.conf" "$HOME/.config/yabar/yabar.conf"
 
@@ -194,7 +193,8 @@ install_dotfiles () {
   link_content "$dotfiles/vim/vim" "$HOME/.vim"
   
   # xfluxd
-  link_file "$dotfiles/xfluxd/xfluxd.conf" "/etc/xfluxd.conf"
+  #TODO requires admin rights. workaround!
+  #link_file "$dotfiles/xfluxd/xfluxd.conf" "/etc/xfluxd.conf"
 
   # xorg
   link_file "$dotfiles/xorg/xinitrc" "$HOME/.xinitrc"

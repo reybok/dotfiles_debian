@@ -1,1 +1,1 @@
-/home/napnac/dotfiles/i3/config
+/home/jakob/dotfiles/i3/config

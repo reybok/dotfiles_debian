@@ -1,8 +1,36 @@
-# Randomly choose a wallpaper
-wallpaper_id=$(((RANDOM % 28) + 1))
-feh --bg-scale $HOME/.config/themer/wallpaper$wallpaper_id/wallpaper.jpg
+#!/bin/bash
+#
+# sets the theme and wallpaper 
 
-# Load the corresponding theme with it (thanks to themer)
+#TODO switch to i3blocks
+default="monochrome"
+theme=${1:-$default}
+themer activate $theme
+wallpaper="$HOME/.config/themer/$theme/wallpaper.jpg"
+if ! [[ -f $wallpaper ]] ; then
+   wallpaper="$HOME/.config/themer/$theme/wallpaper.png"
+fi
+echo "$wallpaper"
+feh --bg-scale $wallpaper
+#pkill yabar
+#yabar&
+
+exit 0
+echo "skip stuff for test reasons"
+
+# first parameter is used as id
+wallpaper_id=${1}
+nums='^[0-9]+$'
+if ! [[ $wallpaper_id =~ $nums ]] ; then
+   # if parameter not set default to random theme
+   wallpaper_id=$(((RANDOM % 28) + 1))
+fi
+
+# set wallpaper
+feh --bg-scale $HOME/.config/themer/wallpaper$wallpaper_id/wallpaper.jpg
+#TODO check for .jpg or .png!!
+
+# load the theme
 themer activate wallpaper$wallpaper_id
 
 # Reload yabar
