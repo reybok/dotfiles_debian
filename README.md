@@ -1,6 +1,6 @@
 # Dotfiles
 
-These are my personnal dotfiles for my laptop which is running on [Debian stretch](https://wiki.debian.org/DebianStretch) and is using [i3wm](http://i3wm.org/).
+These are my personnal dotfiles for my desktop PC which is running on [Debian stretch](https://wiki.debian.org/DebianStretch) and is using [i3wm](http://i3wm.org/).
 
 ## Software
 
@@ -113,9 +113,9 @@ These are my personnal dotfiles for my laptop which is running on [Debian stretc
 
 ## Hardware
 
-Intel Core i5-3750 @ 3.4GHz, 24GB RAM, OS@128GB SSD, home@1TB HDD, data@2TB HDD
+- schreibtisch: Intel Core i5-3750 @ 3.4GHz, 24GB RAM, OS@128GB SSD, home@1TB HDD, data@2TB HDD
 
-- Dell U @1920x1080
-- Dell U @1920x1080
-- Logitech Projector @1024x768
+   - Dell U @1920x1080
+   - Dell U @1920x1080
+
 
