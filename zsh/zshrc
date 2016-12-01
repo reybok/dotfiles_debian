@@ -10,6 +10,7 @@ setopt HIST_IGNORE_DUPS
 
 # Vim bindkey
 bindkey -v
+bindkey '^R' history-incremental-search-backward
 
 # -----------------------------------------------------------------------------
 # Autoload

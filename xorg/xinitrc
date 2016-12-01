@@ -1,1 +1,5 @@
+xset s off     #don't activate screensaver
+xset -dpms     #disable DPMS (Energy Star) features
+xset noblank   #don't blank the video device
+
 exec i3 >> $HOME/.i3/logfile

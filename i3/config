@@ -209,7 +209,7 @@ bindsym $mod+F3 workspace $workspaceLeft3
 bindsym $mod+F8 workspace $workspaceProjector1
 
 #press the same workspace again to go back where you came from
-workspace_auto_back_and_forth yes
+workspace_auto_back_and_forth no
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -350,8 +350,9 @@ $init i3-msg "workspace $workspaceLeft3; exec \\"i3-sensible-terminal -e 'vim $H
 # htop on secondary monitor
 $init i3-msg "workspace $workspaceLeft1; exec \\"i3-sensible-terminal -e 'htop'\\" ; workspace $workspace1"
 
-exec $HOME/downloads/customize/dependencies/franz/Franz
-$init i3-msg 'workspace $workspace2; exec firefox; workspace $workspace1'
+#exec $HOME/downloads/customize/dependencies/franz/Franz
+$init i3-msg "workspace $workspace2; exec 'firefox -P browse'; workspace $workspace1"
+$init i3-msg "workspace $workspace9; exec 'firefox -P social'; workspace $workspace1"
 
 # network manager
 #$init nm-applet
