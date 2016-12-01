@@ -4,10 +4,10 @@
 set $init exec --no-startup-id
 
 # monitor config
-$init xrandr --output $outputLeft --mode 1920x1080 --pos 1920x0 --rotate normal --output $outputRight --primary --mode 1920x1080 --pos 0x0 --rotate normal --output $outputProjector --off
+$init xrandr --output $outputLeft --mode 1920x1080 --pos 0x0 --rotate normal --output $outputRight --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output $outputProjector --off
 
 # enable S/PDIF output for Xonar DGX sound card
-#$init $HOME/scripts/alsa_enable_DGX_optical.sh
+$init $HOME/scripts/alsa_enable_DGX_optical.sh
 
 # composite manager (window transitions/transparency)
 $init compton 
@@ -104,34 +104,29 @@ bindsym $mod+m focus mode_toggle
 floating_modifier $mod
 
 # resize window (you can also use the mouse for that)
-set $resizeValue 10
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
-        bindsym minus   resize shrink  width    $resizeValue px or $resizeValue ppt
-        bindsym plus    resize grow    width    $resizeValue px or $resizeValue ppt
-        
-        bindsym Shift+minus   resize shrink  height   $resizeValue px or $resizeValue ppt
-        bindsym Shift+plus    resize grow    height   $resizeValue px or $resizeValue ppt
 
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        #bindsym h resize shrink width 10 px or 10 ppt
-        #bindsym j resize grow height 10 px or 10 ppt
-        #bindsym k resize shrink height 10 px or 10 ppt
-        #bindsym l resize grow width 10 px or 10 ppt
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-        #bindsym Left resize shrink width 10 px or 10 ppt
-        #bindsym Down resize grow height 10 px or 10 ppt
-        #bindsym Up resize shrink height 10 px or 10 ppt
-        #bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
 bindsym $mod+r mode "resize"
 
 
@@ -239,13 +234,13 @@ bindsym $mod+Shift+F8 move container to workspace $workspaceProjector1
 # Appearance #
 ##############
 
-set $background   #151515
-set $foreground   #a0a0a0
-set $gray         #808080
-set $primary      #e0e0e0
-set $secondary    #909090
-set $tertiary     #a0a0a0
-set $warning      #ffffff
+set $background   {{ black }}
+set $foreground   {{ white }}
+set $gray         {{ alt_black }}
+set $primary      {{ primary }}
+set $secondary    {{ secondary }}
+set $tertiary     {{ tertiary }}
+set $warning      {{ special }}
 
 set $transparent #00000000
 
@@ -270,7 +265,7 @@ gaps inner 20
 #gaps outer 30
 
 # no gaps if only one window
-smart_gaps on 
+#smart_gaps on 
 
 # Start i3bar to display a workspace bar (plus the system information i3status finds out, if available)
 # primary output
@@ -321,10 +316,6 @@ bar {
 # terminal emulator
 set $term i3-sensible-terminal
 
-# disable screensaver # TODO should toggle screensaver! 
-bindsym $mod+F7       exec xset s off -dpms ; exec notify-send -u low -t 400 "Screensaver disabled"
-bindsym $mod+Shift+F7 exec xset s on  +dmps ; exec notify-send -u low -t 400 "Screensaver enabled"
-
 # start a terminal	
 #bindsym $mod+Return exec "urxvt -sl '12000' +sb -fn 'xft:$fontName:Thin:size=10,xft:FontAwesome:size=10' -letsp '-3'"
 bindsym $mod+Return exec $term 
@@ -351,14 +342,17 @@ assign [class="Franz"] $workspace9
 # tray and autostart #
 ######################
 
+exec gnome-terminal
+exec 'echo "test" > $HOME/test'
+
 # i3 config on secondary monitor
 $init i3-msg "workspace $workspaceLeft3; exec \\"i3-sensible-terminal -e 'vim $HOME/.i3/config'\\" ; workspace $workspace1"
 # htop on secondary monitor
 $init i3-msg "workspace $workspaceLeft1; exec \\"i3-sensible-terminal -e 'htop'\\" ; workspace $workspace1"
 
 #exec $HOME/downloads/customize/dependencies/franz/Franz
-$init i3-msg "workspace $workspace2 ; exec firefox -P browse"
-$init i3-msg "workspace $workspace9 ; exec firefox -P social ; workspace $workspace1"
+$init i3-msg "workspace $workspace2; exec 'firefox -P browse'; workspace $workspace1"
+$init i3-msg "workspace $workspace9; exec 'firefox -P social'; workspace $workspace1"
 
 # network manager
 #$init nm-applet

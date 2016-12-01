@@ -2,33 +2,51 @@
 #
 # symlink installs things.
 
-cd "$(dirname "$0")/."
-dotfiles=$(pwd -P)
-#dotfiles=$HOME/dotfiles
+#######################
+#    custom prompt    #
+#######################
 
-set -e
-# custom prompt
 p=">"
-
-echo ''
+set -e
 
 info () {
   printf "\r  [ \033[00;34m..\033[0m ] $1\n"
 }
-
 user () {
-  printf "\r  [ \033[0;33m??\033[0m ] $1 $p \n"
+  printf "\r  [ \033[0;33m??\033[0m ] $1 \n $p "
 }
-
 success () {
   printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
 }
-
 fail () {
   printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
   echo ''
   exit
 }
+
+
+
+##############
+#    init    #
+##############
+
+debug=${1:-false}
+function debugMsg {
+    if [ "$debug" = true ] ; then
+        info "DEBUG: $1"
+    fi
+}
+debugMsg "activated!"
+
+cd "$(dirname "$0")/."
+dotfiles=$(pwd -P)
+debugMsg "dotfiles folder: $dotfiles"
+
+
+
+#########################
+#    setup functions    #
+#########################
 
 setup_gitconfig () {
   if ! [ -f git/gitconfig.local.symlink ]
@@ -59,9 +77,9 @@ link_file () {
   local overwrite= backup= skip=
   local action=
 
-  # ensure that parent folder exist
+  # ensure that parent folders exist
   mkdir -p $(dirname "$src")
-  mkdir -p $(dirname "$dst")  
+  mkdir -p $(dirname "$dst") 
 
   if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
   then
@@ -69,11 +87,10 @@ link_file () {
     if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]
     then
 
+      # if link already points to correct src, skip the file:    
       local currentSrc="$(readlink $dst)"
-
       if [ "$currentSrc" == "$src" ]
       then
-
         skip=true;
 
       else
@@ -168,7 +185,7 @@ install_dotfiles () {
   link_file "$dotfiles/gtk/gtk-3.0" "$HOME/.config/gtk-3.0/settings.ini"
 
   # i3
-  link_file "$dotfiles/i3/config" "$dotfiles/themer/templates/i3/i3.tpl"
+  link_file "$dotfiles/i3/config" "$HOME/.i3/config"
 
   # scripts
   link_file "$dotfiles/scripts" "$HOME/scripts"
@@ -178,10 +195,8 @@ install_dotfiles () {
   link_file "$dotfiles/termite/dircolors" "$HOME/.dircolors"
 
   # themer
-  link_content "$dotfiles/themer" "$HOME/.config/themer"
-  link_file "$HOME/.config/themer/current/i3.conf" "$HOME/.i3/config"
-  link_file "$HOME/.config/themer/current/Xresources" "$HOME/.Xresources"
-  link_file "$HOME/.config/themer/current/yabar.conf" "$HOME/.config/yabar/yabar.conf"
+  #link_content "$dotfiles/themer" "$HOME/.config/themer"
+  #link_file "$HOME/.config/themer/current/yabar.conf" "$HOME/.config/yabar/yabar.conf"
 
   # tmux
   link_file "$dotfiles/tmux/tmux.conf" "$HOME/.tmux.conf"
@@ -199,11 +214,11 @@ install_dotfiles () {
   # xorg
   link_file "$dotfiles/xorg/xinitrc" "$HOME/.xinitrc"
   link_file "$dotfiles/xorg/Xmodmap" "$HOME/.Xmodmap"
-  link_file "$dotfiles/xorg/Xresources" "$dotfiles/themer/templates/i3/Xresources.tpl"
+  link_file "$dotfiles/xorg/Xresources" "$HOME/.Xresources"
   #link_content "$dotfiles/xorg/xorg.conf.d" "/etc/X11/xorg.conf.d"
 
   # yabar
-  link_file "$dotfiles/yabar/yabar.conf" "$dotfiles/themer/templates/i3/yabar.tpl"
+  #link_file "$dotfiles/yabar/yabar.conf" "$dotfiles/themer/templates/i3/yabar.tpl"
 
   # zsh
   link_file "$dotfiles/zsh/zshrc" "$HOME/.zshrc"
