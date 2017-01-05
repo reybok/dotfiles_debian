@@ -186,6 +186,8 @@ install_dotfiles () {
 
   # i3
   link_file "$dotfiles/i3/config" "$HOME/.i3/config"
+  link_file "$dotfiles/i3/i3scrotlock.sh" "$HOME/.i3/i3scrotlock.sh"
+  link_file "$dotfiles/i3/i3scrotlock.png" "$HOME/.i3/i3scrotlock.png"
 
   # scripts
   link_file "$dotfiles/scripts" "$HOME/scripts"
