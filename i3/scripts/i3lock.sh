@@ -1,7 +1,7 @@
 #!/bin/bash
 
 tmpbg='/tmp/blr.png'
-icon="$HOME/downloads/icons/lock.png"
+icon="$HOME/.i3/local.d/lock.png"
 
 (( $# )) && { icon=$1; }
 

@@ -103,7 +103,7 @@ min_width=100.00%
 # The second parameter overrides the mixer selection
 # See the script for details.
 [volume]
-command=$HOME/.i3/scripts/volume
+command=$HOME/.i3/blocklets/volume
 label=
 #label=♪
 instance=Master
@@ -111,20 +111,11 @@ instance=Master
 interval=once
 signal=1
 
-# Battery indicator
-#
-# The battery instance defaults to 0.
-[battery]
-command=$HOME/.i3/scripts/battery
-#label=⚡
-#instance=1
-interval=30
-
 # Date Time
 #
 [time]
 #command=date '+%a, %d.%m.  %H:%M'
-command=$HOME/.i3/scripts/date
+command=$HOME/.i3/blocklets/date
 interval=1
 label=
 # Generic media player support

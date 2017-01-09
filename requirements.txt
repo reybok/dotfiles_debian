@@ -1,0 +1,15 @@
+#SOFTWARE
+
+i3
+i3blocks
+i3lock
+rofi
+
+less
+tmux
+
+#optional software
+
+firefox
+atom-io
+flux
