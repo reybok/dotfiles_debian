@@ -12,63 +12,57 @@ Xft.rgba: rgb
 !!!!!!!!!
 
 ! special
-*.foreground:  #ffffff
-*.background:  #0e0e0e
+!*.foreground:  #ffffff
+!*.background:  #0e0e0e
 
 ! black
-*.color0:      #151515
-*.color8:      #808080
+!*.color0:      #151515
+!*.color8:      #808080
 
 ! red
-*.color1:      #a0a0a0
-*.color9:      #c8c8c8
+!*.color1:      #a0a0a0
+!*.color9:      #c8c8c8
 
 ! green
-*.color2:      #a0a0a0
-*.color10:     #c8c8c8
+!*.color2:      #a0a0a0
+!*.color10:     #c8c8c8
 
 ! yellow
-*.color3:      #b5b5b5
-*.color11:     #c8c8c8
+!*.color3:      #b5b5b5
+!*.color11:     #c8c8c8
 
 ! blue
-*.color4:      #a0a0a0
-*.color12:     #c8c8c8
+!*.color4:      #a0a0a0
+!*.color12:     #c8c8c8
 
 ! magenta
-*.color5:      #e0e0e0
-*.color13:     #c8c8c8
+!*.color5:      #e0e0e0
+!*.color13:     #c8c8c8
 
 ! cyan
-*.color6:      #a0a0a0
-*.color14:     #d2d2d2
+!*.color6:      #a0a0a0
+!*.color14:     #d2d2d2
 
 ! white
-*.color7:      #a0a0a0
-*.color15:     #e1e1e1
+!*.color7:      #a0a0a0
+!*.color15:     #e1e1e1
 
 !!!!!!!
 ! Rofi
 !!!!!!!
 
 ! Window opacity
-rofi.opacity:                        100
-! Window width
-rofi.width:                          60
+rofi.opacity: 85
 ! Number of lines
-rofi.lines:                          7
+rofi.lines: 5
 ! Number of columns
-rofi.columns:                        1
-! Font to use
-rofi.font:                           Hack 15
+rofi.columns: 1
 
+! Colors:
+rofi.color-enabled: true
+rofi.color-window: #2f343f, #2f343f, #2f343f
+! State 	   bg	    text     bg_alt   active_bg active_text
+rofi.color-normal: #2f343f, #f3f4f5, #2f343f, #2f343f, #9575cd
+rofi.color-active: #2f343f, #f3f4f5, #2f343f, #2f343f, #9575cd
+rofi.color-urgent: #2f343f, #f3f4f5, #2f343f, #2f343f, #9575cd
 
-rofi.color-enabled:                  true
-! Color scheme window
-rofi.color-window: argb:c336343f, argb:0e9dbdb, argb:0ef6155
-! Color scheme for normal row
-rofi.color-normal: argb:0191525,argb:dcffffff, argb:02f1e2e, argb:9a0e1c26, #e0e0e0
-! Color scheme for active row
-rofi.color-active: argb:02f1e2e, #268bd2, argb:02f1e2e, #268bd2, #fdf6e3
-! Color scheme for urgent row
-rofi.color-urgent: argb:0fdf6e3, #dc322f, argb:0eee8d5, #dc322f, #fdf6e3
