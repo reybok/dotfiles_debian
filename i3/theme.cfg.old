@@ -1,0 +1,36 @@
+##########
+# colors #
+##########
+
+set $background   #151515
+set $foreground   #a0a0a0
+set $gray         #808080
+set $primary      #e0e0e0
+set $secondary    #909090
+set $tertiary     #a0a0a0
+set $warning      #ffffff
+
+#THIS WAS THE CORRESPONDING BLOCK IN base.cfg !!!
+
+# colors                BORDER      BACKGROUND TEXT        INDICATOR
+client.focused          $primary    $primary   $background $primary
+client.focused_inactive $secondary  $secondary $background $secondary
+client.unfocused        $secondary  $secondary $background $secondary
+client.urgent           $warning    $warning   $foreground $warning
+
+	colors {
+		background $background
+		separator $gray
+		#			border	      background     text
+		focused_workspace	$primary      $primary       $background
+		inactive_workspace	$background   $background    $secondary
+		urgent_workspace	$background   $background    $warning
+	}	
+ 
+########
+# font #
+########
+
+set $fontName System San Francisco Display
+set $fontSize 11
+set $fontSizeBig 18
