@@ -7,9 +7,13 @@ rofi
 
 less
 tmux
+vim
+ranger
+sxiv
 
 #optional software
 
+neofetch
 firefox
 atom-io
 flux
