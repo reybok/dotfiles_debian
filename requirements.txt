@@ -9,12 +9,15 @@ xautolock
 less
 tmux
 gvim
-
 feh / nitrogen
 scrot
+ranger
+sxiv
+gsimplecal
 
 #optional software
 
+neofetch
 firefox
 atom-io
 flux
