@@ -73,14 +73,15 @@ close_all = mod4+n
 #context = ctrl+shift+period
 
 [urgency_low]
-background = "#aad5ff"
+background = "#2f343f"
+foreground = "#676E7D"
 
 [urgency_normal]
-background = "#457d30"
-foreground = "#D9FFCB"
+background = "#676E7D"
+foreground = "#f3f4f5"
 timeout = 10
 
 [urgency_critical]
-background = "#900000"
-foreground = "#D9FFCB"
+background = "#E53935"
+foreground = "#f3f4f5"
 timeout = 10
