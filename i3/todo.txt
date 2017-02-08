@@ -1,2 +1,3 @@
 sound
 checking software dependencies
+wallpapers via nitrogen

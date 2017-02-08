@@ -4,12 +4,18 @@ i3
 i3blocks
 i3lock
 rofi
+xautolock
 
 less
 tmux
+gvim
+
+feh / nitrogen
+scrot
 
 #optional software
 
 firefox
 atom-io
 flux
+
