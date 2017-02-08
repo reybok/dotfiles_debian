@@ -206,6 +206,9 @@ install_dotfiles () {
   link_content "$dotfiles/tmux/tmuxinator" "$HOME/.tmuxinator"
   link_file "$dotfiles/tmux/tmux_powerline.json" "$HOME/.config/powerline/themes/tmux/default.json"
 
+  # utility
+  link_file "$dotfiles/utility/gsimplecal.cfg" "$HOME/.config/gsimplecal/config"
+
   # vim
   link_file "$dotfiles/vim/vimrc" "$HOME/.vimrc"
   link_content "$dotfiles/vim/vim" "$HOME/.vim"
